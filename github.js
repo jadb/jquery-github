@@ -23,6 +23,7 @@
 			api: 'repos',
 			max: 0,
 			repo: null,
+			filters: [],
 			forks: false,
 			tpl: '<li><div><h3><a href="%url%">%name%</a></h3><p>%description%</p><span>Forks: %forks% | Watchers: %watchers% | Homepage: %homepage%</span></div></li>',
 			user: null,
@@ -41,6 +42,13 @@
 				// filter forks out
 				if (!opts.forks && true === repo.fork) {
 					return;
+				}
+
+				// regex filter repos by name
+				for (var i in opts.filters) {
+					if (repo.name.match(opts.filters[i])) {
+						return;
+					}
 				}
 
 				html = html + opts.tpl;
