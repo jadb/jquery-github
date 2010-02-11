@@ -33,8 +33,6 @@
 		};
 		// merge args and defaults
 		var opts = $.extend(true, defaults, args);
-		// build api's url
-		var url = apis[opts.api].replace('%user%', opts.user).replace('%repo%', opts.repo);
 
 		var html = '';
 		var container = this;
@@ -42,18 +40,26 @@
 		// filter owned repos from watched ones
 		if ('watched' == opts.api) {
 			opts.owner = false;
+		} else if ('forked' == opts.api) {
+			opts.api = 'repos';
+			opts.forks = true;
+			opts.owner = false;
 		}
+
+		// build api's url
+		var url = apis[opts.api].replace('%user%', opts.user).replace('%repo%', opts.repo);
 
 		$.getJSON(url, 'callback=?', function(response, textStatus) {
 			$.each(response.repositories, function(i, repo) {
-
-				// filter forks out
-				if (!opts.forks && true === repo.fork) {
-					return;
-				}
-
-				// filter owned repos from watched ones
-				if (!opts.owner && opts.user === repo.owner) {
+				console.log(repo.fork);
+				if (
+					// filter forks out
+					(!opts.forks && true === repo.fork)
+					// filter owned repos from watched ones
+					|| (!opts.owner && opts.user === repo.owner && 'watched' == opts.api)
+					// filter for only forked repos
+					|| (!opts.owner && opts.forks && !repo.fork)
+					) {
 					return;
 				}
 

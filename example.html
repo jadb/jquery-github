@@ -37,6 +37,11 @@
 					user:'jadb',
 					tpl: '<li><a href="%url%">%name%</a></li>'
 				});
+				$('#example-6').github({
+					api: 'forked',
+					user:'felixge',
+					tpl: '<li><a href="%url%">%name%</a></li>'
+				});
 			});
 		</script>
    </head>
@@ -84,5 +89,14 @@
 			});
 		</code>
 		<ol id="example-5"></ol>
+		<h2>felixge's forked repos</h2>
+		<code>
+			$('#example-6').github({
+				api: 'forked',
+				user:'felixge',
+				tpl: '&lt;li&gt;&lt;a href="%url%"&gt;%name%&lt;/a&gt;&lt;/li&gt;'
+			});
+		</code>
+		<ol id="example-6"></ol>
 	</body>
 </html>
