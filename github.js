@@ -23,6 +23,7 @@
 			api: 'repos',
 			max: 0,
 			repo: null,
+			forks: false,
 			tpl: '<li><div><h3><a href="%url%">%name%</a></h3><p>%description%</p><span>Forks: %forks% | Watchers: %watchers% | Homepage: %homepage%</span></div></li>',
 			user: null,
 		};
@@ -36,6 +37,12 @@
 
 		$.getJSON(url, 'callback=?', function(response, textStatus) {
 			$.each(response.repositories, function(i, repo) {
+
+				// filter forks out
+				if (!opts.forks && true === repo.fork) {
+					return;
+				}
+
 				html = html + opts.tpl;
 				$.each(data[opts.api], function(i, field) {
 					var value = repo[field];
