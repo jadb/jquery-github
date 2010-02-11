@@ -46,7 +46,10 @@
 
 				// regex filter repos by name
 				for (var i in opts.filters) {
-					if (repo.name.match(opts.filters[i])) {
+					if (typeof opts.filters[i] == 'string') {
+						opts.filters[i] = new RegExp(opts.filters[i]);
+					}
+					if (repo.name.match(opts.filters[i], "i")) {
 						return;
 					}
 				}
