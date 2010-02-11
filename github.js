@@ -12,11 +12,13 @@
 		var apis = {
 			repo: 'http://github.com/api/v2/json/repos/show/%user%/%repo%',
 			repos: 'http://github.com/api/v2/json/repos/show/%user%',
+			watched: 'http://github.com/api/v2/json/repos/watched/%user%',
 		};
 		// structure of data returned for every api call
 		var data = {
 			repo: [],
 			repos: ['description', 'fork', 'forks', 'homepage', 'name', 'open_issues', 'owner', 'url', 'watchers'],
+			watched: ['description', 'fork', 'forks', 'homepage', 'name', 'open_issues', 'owner', 'url', 'watchers'],
 		}
 		// options
 		var defaults = {
@@ -25,6 +27,7 @@
 			repo: null,
 			filters: [],
 			forks: false,
+			owner: true,
 			tpl: '<li><div><h3><a href="%url%">%name%</a></h3><p>%description%</p><span>Forks: %forks% | Watchers: %watchers% | Homepage: %homepage%</span></div></li>',
 			user: null,
 		};
@@ -36,11 +39,21 @@
 		var html = '';
 		var container = this;
 
+		// filter owned repos from watched ones
+		if ('watched' == opts.api) {
+			opts.owner = false;
+		}
+
 		$.getJSON(url, 'callback=?', function(response, textStatus) {
 			$.each(response.repositories, function(i, repo) {
 
 				// filter forks out
 				if (!opts.forks && true === repo.fork) {
+					return;
+				}
+
+				// filter owned repos from watched ones
+				if (!opts.owner && opts.user === repo.owner) {
 					return;
 				}
 

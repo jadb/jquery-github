@@ -1,5 +1,6 @@
 ol#example-2,
-ol#example-4 {
+ol#example-4,
+ol#example-5 {
 	background-color: #fff;
 	color: #aaa;
 	font: 12px "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
@@ -9,7 +10,8 @@ ol#example-4 {
 	width: 240px;
 }
 #example-2 li,
-#example-4 li {
+#example-4 li,
+#example-5 li {
   background-color: #f1f1f1;
   border: 1px solid #d8d8d8;
   font-size: 14px;

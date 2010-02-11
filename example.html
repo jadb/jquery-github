@@ -32,6 +32,11 @@
 					filters:["node", "fab", "cakephp"],
 					tpl: '<li><a href="%url%">%name%</a></li>'
 				});
+				$('#example-5').github({
+					api: 'watched',
+					user:'jadb',
+					tpl: '<li><a href="%url%">%name%</a></li>'
+				});
 			});
 		</script>
    </head>
@@ -70,5 +75,14 @@
 			});
 		</code>
 		<ol id="example-4"></ol>
+		<h2>jadb's watched repos</h2>
+		<code>
+			$('#example-5').github({
+				api: 'watched',
+				user:'jadb',
+				tpl: '&lt;li&gt;&lt;a href="%url%"&gt;%name%&lt;/a&gt;&lt;/li&gt;'
+			});
+		</code>
+		<ol id="example-5"></ol>
 	</body>
 </html>
