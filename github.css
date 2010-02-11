@@ -1,4 +1,5 @@
-ol#example-2 {
+ol#example-2,
+ol#example-4 {
 	background-color: #fff;
 	color: #aaa;
 	font: 12px "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
@@ -7,7 +8,8 @@ ol#example-2 {
 	padding: 2px;
 	width: 240px;
 }
-#example-2 li {
+#example-2 li,
+#example-4 li {
   background-color: #f1f1f1;
   border: 1px solid #d8d8d8;
   font-size: 14px;
