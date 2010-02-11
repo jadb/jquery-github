@@ -2,6 +2,8 @@
 
 Allows you to painlessly work with [GitHub][1]'s [API][2]
 
+[Demo][3] is the `example.html` file pulled every hour.
+
 ## Requirements
 
 * jQuery 1.3.2 (or above)
@@ -35,3 +37,4 @@ http://github.com/jadb/jquery-github
 
 [1]: http://github.com
 [2]: http://develop.github.com
+[3]: http://demo.loudbaking.com/jquery-github/example.html
