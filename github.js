@@ -129,7 +129,7 @@
 				});
 				if (total > 0) {
 					// add a `show all` link
-					container.append((opts.footer).replace('%total%', total));
+					container.append((opts.footer).replace('%total%', (total - opts.max)));
 					// and add an onClick event to show all hidden children
 					$(container.selector + ' *.footer').click(function() {
 						container.children().each(function(i) {
