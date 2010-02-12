@@ -52,7 +52,6 @@
 
 		$.getJSON(url, 'callback=?', function(response, textStatus) {
 			$.each(response.repositories, function(i, repo) {
-				console.log(repo.fork);
 				if (
 					// filter forks out
 					(!opts.forks && true === repo.fork)
