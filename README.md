@@ -2,7 +2,7 @@
 
 Allows you to painlessly work with [GitHub][1]'s [API][2]
 
-[Demo][3] is the `example.html` file pulled every hour.
+The [Badges][3] and [Example][4] pages are pulled every hour.
 
 ## Requirements
 
@@ -37,4 +37,5 @@ http://github.com/jadb/jquery-github
 
 [1]: http://github.com
 [2]: http://develop.github.com
-[3]: http://demo.loudbaking.com/jquery-github/example.html
+[3]: http://demo.loudbaking.com/jquery-github/badges.html
+[4]: http://demo.loudbaking.com/jquery-github/example.html

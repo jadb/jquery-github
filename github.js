@@ -44,7 +44,7 @@
 			// enable gravatar by default
 			defaults.gravatar = 's=30';
 			// overwrite default template when using `commits` API
-			defaults.tpl = '<li><img src="%gravatar%"><a href="mailto:%author_email%">%author_name%</a> <span>(%authored_date%)</span> <p>%message%</p></li>';
+			defaults.tpl = '<li><p>%message%</p><img src="%gravatar%"><span><a href="mailto:%author_email%">%author_name%</a></span> <span>(%authored_date%)</span> </li>';
 		}
 
 		// merge args and defaults

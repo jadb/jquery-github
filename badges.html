@@ -1,0 +1,142 @@
+<html>
+   <head>
+		<link rel="stylesheet" href="badges.css" type="text/css" media="screen" charset="utf-8">
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js" type="text/javascript"></script>
+      <script src="github.js" type="text/javascript"></script>
+		<script type="text/javascript" charset="utf-8">
+			jQuery(document).ready(function($) {
+				$('#badges-1').github({
+					user: 'jadb',
+					max: 7,
+					footer: '<li class="footer"><a>Show %total% more repositories...',
+					tpl:'<li><a href="%url%">%name%</a></li>'
+				});
+				$('#badges-2').github({
+					api: 'watched',
+					user: 'jadb',
+					max: 6,
+					footer: '<li class="footer"><a>Show %total% more repositories...',
+					tpl:'<li><a href="%url%">%name%</a></li>'
+				});
+				$('#badges-3').github({
+					api: 'forked',
+					user: 'felixge',
+					max: 5,
+					footer: '<li class="footer"><a>Show %total% more repositories...',
+					tpl:'<li><a href="%url%">%name%</a></li>'
+				});
+				$('#badges-4').github({
+					api: 'commits',
+					user: 'jadb',
+					repo: 'jquery-github',
+					max: 4,
+					footer: '<li class="footer"><a>Show %total% more commits...',
+				});
+			});
+		</script>
+		<style type="text/css" media="screen">
+			div#container {margin:0 auto;width:900px;}
+			div#header, div#footer {background-color:#000;color:#fff;padding:10px;margin-bottom:30px;}
+			div#footer {margin:0;margin-top:30px;}
+			div#header a, div#footer a {color:#fff;}
+			div#header h1, div#header h2 {padding:0;margin:0;}
+			div#header h2 {font-weight:normal;}
+			div.left {float:left;width:350px;}
+			div.right {float:right;width:550px;}
+			#content div.right {font:15px "lucida grande",verdana,arial,helvetica,sans-serif;line-height:1.3em;}
+			#content div.right a { color: #33F; }
+			#footer div.right {text-align: right;width:530px;}
+			div.right ul {padding-left:20px;}
+			div.clear {clear:both;}
+			code {
+				border: 1px solid #000;
+				padding: 8px;
+				display: block;
+				background-color: #f1f1f1;
+				font: 15px Courier;
+				text-align: center;
+				font-weight: bold;
+				margin-top: 10px;
+			}
+		</style>
+   </head>
+   <body>
+		<div id="container">
+			<div id="header">
+				<h1>GitHub Badges</h1>
+				<h2>painlessly with the <a href="http://github.com/jadb/jquery-github" title="jQuery GitHub plugin">jQuery GitHub plugin</a></h2>
+			</div>
+			<code>
+				git clone git://github.com/jadb/jquery-github
+			</code>
+			<div id="content">
+				<div class="left">
+					<div class="github">
+						<h3>Public repositories</h3>
+						<ul id="badges-1"></ul>
+						<h3>Watched repositories</h3>
+						<ul id="badges-2"></ul>
+						<h3>Forked repositories</h3>
+						<ul id="badges-3"></ul>
+					</div>
+					<div class="commit">
+						<h3>Latest commits to jquery-github.git</h3>
+						<ul id="badges-4"></ul>
+					</div>
+				</div>
+				<div class="right">
+					<p>While working on my defunct blog's makeover, I needed some interesting sidebar fillers/badges. Before the common <a href="http://twitter.com">Twitter</a> feed, I believed that some <a href="http://github.com">GitHub</a> nifty feeds would be a better fit to start with.</p>
+					<h2>What kind of feeds?</h2>
+					<p>Lists of my public, forked or watched repositories. Or maybe a feed of the latest commits on a project's dedicated page.</p>
+					<h2>Why build something from scratch?</h2>
+					<p>After a quick <a href="http://google.com?q=github+badges">Google search</a>, I came to the conclusion that no available library/script would do the job. TBH, I haven't tried any - code speaks for itself.</p>
+					<p>Constants, hardcoded options and serving a single API per script were enough reasons to get me coding.</p>
+					<h2>Current (limited) feature set</h2>
+					<ul>
+						<li>APIs: commits, forked, repos, watched</li>
+						<li>Basic result filtering</li>
+						<li>Customizable templates</li>
+						<li>Maximum limit (with footer link to show more)</li>
+						<li>Gravatar</li>
+						<li>more...</li>
+					</ul>
+					<h2>Future plans</h2>
+					<p>As you might have noticed, while the feature set is varied and quite satisfactory for all general purposes, I am still planning on adding support for:
+						<ul>
+							<li>tests</li>
+							<li>callbacks</li>
+							<li>a smarter <a href="http://ejohn.org/blog/javascript-micro-templating/">templating engine</a></li>
+							<li>more of GitHub's APIs</li>
+							<li>result sorting/ordering</li>
+							<li>and the unavoidable bug fixes</li>
+						</ul>
+					</p>
+					<h2>Credits / Inspiration</h2>
+					<p>Like I said above, other badges exist out there. From the minute I searched and until now, here are the ones I stumbled on and which might have inspired me:
+					<ul>
+						<li>DrNic's <a href="http://drnicjavascript.rubyforge.org/github_badge/">GitHub Badge</a>, for a list of your public repos.</li>
+						<li>mattn's <a href="http://mattn.github.com/jquery-github-badge/">jQuery GitHub Badge</a>, for a list of your latest commits.</li>
+						<li>kentbrew's <a href="http://github.com/kentbrew/github-social-badge">GitHub Social Badge</a>, visualize projects and followers.</li>
+						<li>heipei's <a href="http://github.com/heipei/github-commit-badge/tree">GitHub Commit Badge</a>, for displaying the latest (or a specific commit) for a github-project.</li>
+					</ul>
+					Remember, I haven't tried any. I suspect some of them aren't even maintained and still using GitHub's v1 API.</p>
+					<p>For <a href="http://gravatar.com">Gravatar</a> support and pretty date formats:
+						<ul>
+							<li>MD5 (by Masanao Izumo), copied from <a href="http://mattn.github.com/jquery-github-badge/">mattn's script</a></li>
+							<li>John Resig's <a href="http://ejohn.org/blog/javascript-pretty-date/">prettyDate()</a></li>
+						</ul>
+					</p>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<code>
+				git clone git://github.com/jadb/jquery-github
+			</code>
+			<div id="footer">
+				<div class="left">&copy;2010 WDT Media</div>
+				<div class="right"><a href="http://twitter.com/jadb">Follow me on Twitter</a></div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</body>
+</html>

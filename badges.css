@@ -1,0 +1,90 @@
+div.github ul {
+	border-color: #e5e5e5;
+	border-style: solid solid none solid;
+	border-width: 1px 1px 0 1px;
+	color: #999;
+	font: 14px helvetica,arial,freesans,clean,sans-serif;
+	font-weight: bold;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	width: 300px;
+}
+div.github li.footer {
+	background: #fff !important;
+	padding: 0;
+}
+div.github li.footer > a { color: #999; }
+div.github li {
+	border-color: #e5e5e5 #e5e5e5 #e5e5e5;
+	border-style: none none solid;
+	border-width: medium medium 1px;
+	background: #fff url(http://github.com/images/icons/public.png) no-repeat scroll 10px 4px;
+	margin: 0;
+	padding: 0 0 0 22px;
+}
+div.github li:hover {
+	background-color: #fff;
+}
+div.github a {
+	display: block;
+	padding: 6px 0 4px 10px;
+	color: #4183c4;
+	text-decoration: none;
+	background: transparent url(http://github.com/images/modules/repo_list/arrow-40.png) no-repeat scroll 97% 50%;
+}
+div.github a:hover {
+	background-image: url(http://github.com/images/modules/repo_list/arrow-80.png);
+	text-decoration: underline;
+}
+div.github span {
+	display: block;
+	font-size: 10px;
+}
+div.github p { display: none; }
+div.github li:hover > p {
+	color: #000;
+	display: block;
+	font-size: 10px;
+}
+
+div.commit ul {
+	font: 14px helvetica,arial,freesans,clean,sans-serif;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	width: 300px;
+}
+div.commit li {
+	background-color: #f1f1f1;
+	border: 1px solid #e5e5e5;
+	margin: 1px 0;
+	padding: 5px;
+}
+div.commit li:hover {
+	background-color: #fff;
+}
+div.commit img {
+	position: relative;
+	float: left;
+	bottom: 4px;
+	margin: 0 5px 0 0;
+	padding-bottom: 10px;
+}
+div.commit p {
+	line-height: 1.4em;
+	margin: 0;
+	padding: 0;
+	padding-bottom: 8px;
+}
+div.commit span {display: block;}
+div.commit a, div.commit span {
+	color: #000;
+	font-size: 12px;
+	text-decoration: none;
+}
+div.commit li.footer {
+	border: 0;
+	background-color: #fff;
+	text-align: right;
+}
