@@ -26,6 +26,7 @@
 			max: 0,
 			repo: null,
 			filters: [],
+			footer: '<li class="footer"><a>Show all (%total%)</a></li>',
 			forks: false,
 			owner: true,
 			tpl: '<li><div><h3><a href="%url%">%name%</a></h3><p>%description%</p><span>Forks: %forks% | Watchers: %watchers% | Homepage: %homepage%</span></div></li>',
@@ -83,6 +84,34 @@
 				});
 			});
 			container.html(html);
+
+			// only if max limit is set
+			if (opts.max > 0) {
+				var total = 0;
+				// loop through all container's children
+				container.children().each(function(i) {
+					if (i >= opts.max) {
+						// hide the extra
+						$(this).hide();
+						// update total
+						total = i;
+					}
+				});
+				if (total > 0) {
+					// add a `show all` link
+					container.append((opts.footer).replace('%total%', total));
+					// and add an onClick event to show all hidden children
+					$(container.selector + ' *.footer').click(function() {
+						container.children().each(function(i) {
+							$(this).show();
+						})
+						// hide the `show all` link
+						$(this).hide();
+					});
+					// add href to link
+					$(container.selector + ' *.footer a').attr('href', container.selector);
+				}
+			}
 		});
 	}
 })(jQuery);

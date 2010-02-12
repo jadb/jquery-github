@@ -34,6 +34,7 @@
 				});
 				$('#example-5').github({
 					api: 'watched',
+					max: 3,
 					user:'jadb',
 					tpl: '<li><a href="%url%">%name%</a></li>'
 				});
@@ -80,10 +81,11 @@
 			});
 		</code>
 		<ol id="example-4"></ol>
-		<h2>jadb's watched repos</h2>
+		<h2>jadb's watched repos (max set to 3)</h2>
 		<code>
 			$('#example-5').github({
 				api: 'watched',
+				max: 3,
 				user:'jadb',
 				tpl: '&lt;li&gt;&lt;a href="%url%"&gt;%name%&lt;/a&gt;&lt;/li&gt;'
 			});
