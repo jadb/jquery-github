@@ -42,7 +42,7 @@
 		if ('commits' == args.api) {
 			obj = 'commits';
 			// enable gravatar by default
-			defaults.gravatar = true;
+			defaults.gravatar = 's=30';
 			// overwrite default template when using `commits` API
 			defaults.tpl = '<li><img src="%gravatar%"><a href="mailto:%author_email%">%author_name%</a> <span>(%authored_date%)</span> <p>%message%</p></li>';
 		}
@@ -100,7 +100,7 @@
 						html = html.replace('%' + field + '_name%', value['name']);
 						html = html.replace('%' + field + '_email%', value['email']);
 						if (opts.gravatar) {
-							html = html.replace('%gravatar%', 'http://www.gravatar.com/avatar/' + MD5.hexdigest(value['email']) + '?s=60');
+							html = html.replace('%gravatar%', 'http://www.gravatar.com/avatar/' + MD5.hexdigest(value['email']) + '?' + opts.gravatar);
 						}
 					} else {
 						if (typeof value == 'string') {
