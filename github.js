@@ -10,12 +10,14 @@
 	$.fn.github = function(args) {
 		// available api calls
 		var apis = {
+			commits: 'http://github.com/api/v2/json/commits/list/%user%/%repo%/%branch%',
 			repo: 'http://github.com/api/v2/json/repos/show/%user%/%repo%',
 			repos: 'http://github.com/api/v2/json/repos/show/%user%',
 			watched: 'http://github.com/api/v2/json/repos/watched/%user%',
 		};
 		// structure of data returned for every api call
 		var data = {
+			commits: ['author', 'authored_date', 'id', 'committed_date', 'committer', 'message', 'parents', 'tree', 'url'],
 			repo: [],
 			repos: ['description', 'fork', 'forks', 'homepage', 'name', 'open_issues', 'owner', 'url', 'watchers'],
 			watched: ['description', 'fork', 'forks', 'homepage', 'name', 'open_issues', 'owner', 'url', 'watchers'],
@@ -23,6 +25,7 @@
 		// options
 		var defaults = {
 			api: 'repos',
+			branch: 'master',
 			max: 0,
 			repo: null,
 			filters: [],
@@ -32,6 +35,15 @@
 			tpl: '<li><div><h3><a href="%url%">%name%</a></h3><p>%description%</p><span>Forks: %forks% | Watchers: %watchers% | Homepage: %homepage%</span></div></li>',
 			user: null,
 		};
+
+		// object returned by API
+		var obj = 'repositories';
+		if ('commits' == args.api) {
+			obj = 'commits';
+			// overwrite default template when using `commits` API
+			defaults.tpl = '<li><a href="mailto:%author_email%">%author_name%</a> on <span>%authored_date%</span>: <p>%message%</p></li>';
+		}
+
 		// merge args and defaults
 		var opts = $.extend(true, defaults, args);
 
@@ -49,39 +61,47 @@
 		}
 
 		// build api's url
-		var url = apis[opts.api].replace('%user%', opts.user).replace('%repo%', opts.repo);
+		var url = apis[opts.api].replace('%user%', opts.user).replace('%repo%', opts.repo).replace('%branch%', opts.branch);
 
 		$.ajaxSetup({cache:true});
 		$.getJSON(url, 'callback=?', function(response, textStatus) {
-			$.each(response.repositories, function(i, repo) {
-				if (
-					// filter forks out
-					(!opts.forks && true === repo.fork)
-					// filter owned repos from watched ones
-					|| (!opts.owner && opts.user === repo.owner && 'watched' == opts.api)
-					// filter for only forked repos
-					|| (!opts.owner && opts.forks && !repo.fork)
-					) {
-					return;
-				}
 
-				// regex filter repos by name
-				for (var i in opts.filters) {
-					if (typeof opts.filters[i] == 'string') {
-						opts.filters[i] = new RegExp(opts.filters[i]);
-					}
-					if (repo.name.match(opts.filters[i], "i")) {
+			$.each(response[obj], function(i, repo) {
+				if ('commits' != opts.api) {
+					if (
+						// filter forks out
+						(!opts.forks && true === repo.fork)
+						// filter owned repos from watched ones
+						|| (!opts.owner && opts.user === repo.owner && 'watched' == opts.api)
+						// filter for only forked repos
+						|| (!opts.owner && opts.forks && !repo.fork)
+						) {
 						return;
+					}
+
+					// regex filter repos by name
+					for (var i in opts.filters) {
+						if (typeof opts.filters[i] == 'string') {
+							opts.filters[i] = new RegExp(opts.filters[i]);
+						}
+						if (repo.name.match(opts.filters[i], "i")) {
+							return;
+						}
 					}
 				}
 
 				html = html + opts.tpl;
 				$.each(data[opts.api], function(i, field) {
 					var value = repo[field];
-					if (typeof value == 'string') {
-						value = value.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+					if ('commits' == opts.api && ('author' == field || 'committer' == field)) {
+						html = html.replace('%' + field + '_name%', value['name']);
+						html = html.replace('%' + field + '_email%', value['email']);
+					} else {
+						if (typeof value == 'string') {
+							value = value.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+						}
+						html = html.replace('%' + field + '%', value);
 					}
-					html = html.replace('%' + field + '%', value);
 				});
 			});
 			container.html(html);

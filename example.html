@@ -43,6 +43,11 @@
 					user:'felixge',
 					tpl: '<li><a href="%url%">%name%</a></li>'
 				});
+				$('#example-7').github({
+					api: 'commits',
+					user:'jadb',
+					repo: 'jquery-github'
+				});
 			});
 		</script>
    </head>
@@ -100,5 +105,14 @@
 			});
 		</code>
 		<ol id="example-6"></ol>
+		<h2>jquery-github repo's commits</h2>
+		<code>
+			$('#example-7').github({
+				api: 'commits',
+				user:'jadb',
+				repo: 'jquery-github'
+			});
+		</code>
+		<ol id="example-7"></ol>
 	</body>
 </html>
