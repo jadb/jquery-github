@@ -40,6 +40,7 @@
 		// filter owned repos from watched ones
 		if ('watched' == opts.api) {
 			opts.owner = false;
+			opts.tpl = (opts.tpl).replace('%name%', '%owner%/%name%');
 		} else if ('forked' == opts.api) {
 			opts.api = 'repos';
 			opts.forks = true;
