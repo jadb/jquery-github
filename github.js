@@ -51,6 +51,7 @@
 		// build api's url
 		var url = apis[opts.api].replace('%user%', opts.user).replace('%repo%', opts.repo);
 
+		$.ajaxSetup({cache:true});
 		$.getJSON(url, 'callback=?', function(response, textStatus) {
 			$.each(response.repositories, function(i, repo) {
 				if (
