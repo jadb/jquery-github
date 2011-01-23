@@ -138,8 +138,6 @@
 						// hide the `show all` link
 						$(this).hide();
 					});
-					// add href to link
-					$(container.selector + ' *.footer a').attr('href', container.selector);
 				}
 			}
 		});
