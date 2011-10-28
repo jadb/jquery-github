@@ -1,4 +1,4 @@
-# jQuery GitHub
+# jQuery GitHub ![Project status](http://stillmaintained.com/jadb/jquery-github.png)
 
 Allows you to painlessly work with [GitHub][1]'s [API][2]
 
